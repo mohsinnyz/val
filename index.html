@@ -24,6 +24,7 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark); /* Default to dark for load */
         }
 
         /* --- PHASE 1: AI TERMINAL --- */
@@ -45,32 +46,11 @@
             left: 0;
         }
 
-        .log-line {
-            opacity: 0;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        .progress-bar {
-            width: 300px;
-            height: 10px;
-            border: 1px solid var(--term-green);
-            margin-top: 15px;
-            display: none;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background-color: var(--term-green);
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .glitch-effect {
-            animation: glitch 0.3s infinite;
-        }
-
+        .log-line { margin-bottom: 5px; font-size: 1.1rem; opacity: 0; }
+        .progress-bar { width: 300px; height: 10px; border: 1px solid var(--term-green); margin-top: 15px; display: none; }
+        .progress-fill { height: 100%; background-color: var(--term-green); width: 0%; }
+        
+        .glitch-effect { animation: glitch 0.3s infinite; }
         @keyframes glitch {
             0% { transform: translate(0) }
             20% { transform: translate(-2px, 2px) }
@@ -85,7 +65,7 @@
             background: linear-gradient(135deg, #ffe6ea 0%, #ffc3cf 100%);
             width: 100%;
             height: 100%;
-            display: none; /* Hidden initially */
+            display: none; 
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -97,106 +77,46 @@
             transition: opacity 1s ease;
         }
 
-        .header-text {
-            font-size: 1.2rem;
-            color: #ff4757;
-            font-weight: 600;
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards 0.5s;
-        }
+        .header-text { font-size: 1.2rem; color: #ff4757; font-weight: 600; margin-bottom: 10px; opacity: 0; animation: fadeInUp 1s forwards 0.5s; }
+        .main-question { font-size: 3rem; color: #2f3542; font-weight: 800; margin-bottom: 30px; opacity: 0; animation: fadeInUp 1s forwards 1s; padding: 0 20px; }
+        
+        .btn-container { display: flex; gap: 20px; opacity: 0; animation: fadeIn 1s forwards 2s; position: relative; z-index: 20; }
+        
+        button { padding: 15px 40px; font-size: 1.2rem; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        #yes-btn { background-color: var(--btn-yes); color: white; }
+        #no-btn { background-color: var(--btn-no); color: white; position: relative; }
 
-        .main-question {
-            font-size: 3rem;
-            color: #2f3542;
-            font-weight: 800;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards 1s;
-        }
+        .training-text { margin-top: 30px; font-size: 0.8rem; color: #747d8c; opacity: 0; animation: fadeIn 1s forwards 2.5s; font-family: 'Courier Prime', monospace; }
 
-        .btn-container {
-            display: flex;
-            gap: 20px;
-            opacity: 0;
-            animation: fadeIn 1s forwards 2s;
-            position: relative;
-        }
-
-        button {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        #yes-btn {
-            background-color: var(--btn-yes);
-            color: white;
-        }
-
-        #no-btn {
-            background-color: var(--btn-no);
-            color: white;
-            position: relative; /* Allows movement */
-        }
+        /* --- HEART TRAIL --- */
+        .heart-trail { position: fixed; pointer-events: none; font-size: 20px; opacity: 0.8; transition: transform 1s ease-out, opacity 1s ease-out; z-index: 1000; }
 
         /* --- PHASE 4: SUCCESS --- */
-        #success-container {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-        }
+        #success-container { display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; }
+        
+        .success-title { font-size: 3.5rem; color: #ff4757; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; }
+        /* GLOW EFFECT */
+        .glow-text { text-shadow: 0 0 10px #ff6b81, 0 0 20px #ff6b81, 0 0 40px #ff4757; }
 
-        .success-title {
-            font-size: 3.5rem;
-            color: #ff4757;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        .sub-text { font-size: 1.5rem; color: #2f3542; margin-top: 10px; text-align: center; }
+        .memory-text { margin-top: 20px; font-size: 1.1rem; color: #57606f; font-style: italic; opacity: 0; animation: fadeIn 2s forwards; }
 
-        .sub-text {
-            font-size: 1.5rem;
-            color: #2f3542;
-            margin-top: 10px;
-        }
-
-        .footer {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #747d8c;
-            opacity: 0.7;
-        }
+        .screenshot-btn { margin-top: 30px; background-color: #2f3542; color: white; font-size: 1rem; padding: 10px 20px; border-radius: 10px; display: flex; align-items: center; gap: 10px; }
+        .screenshot-btn:hover { background-color: #000; transform: scale(1.05); }
 
         /* Animations */
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-        /* Mobile Responsive */
-        @media (max-width: 600px) {
-            .main-question { font-size: 2rem; padding: 0 10px; }
-            #terminal-phase { padding: 1rem; font-size: 0.9rem; }
-        }
+        @media (max-width: 600px) { .main-question { font-size: 2rem; } #terminal-phase { padding: 1rem; font-size: 0.9rem; } }
     </style>
 </head>
 <body>
 
     <audio id="bg-music" loop>
-        </audio>
+        <source src="love_song.mp3" type="audio/mpeg"> 
+    </audio>
 
     <div id="terminal-phase">
         <div id="logs"></div>
@@ -214,14 +134,22 @@
                 <button id="yes-btn" onclick="acceptLove()">YES ❤️</button>
                 <button id="no-btn" onmouseover="dodgeCursor()" onclick="fakeError()">NO 💔</button>
             </div>
+
+            <div class="training-text">
+                > This system has been trained on 10,000+ moments of us.
+            </div>
         </div>
 
         <div id="success-container">
-            <div class="success-title">Valentine Confirmed! ❤️</div>
+            <div class="success-title glow-text">Valentine Confirmed! ❤️</div>
             <div class="sub-text">Deployment Successful.</div>
             <div class="sub-text" style="margin-top: 20px; font-size: 1.2rem;">You just made Mohsin the happiest person alive.</div>
             
-            <div class="footer">
+            <button class="screenshot-btn" onclick="window.print()">
+                📸 Screenshot Proof of Agreement
+            </button>
+
+            <div style="margin-top: 50px; font-size: 0.9rem; color: #747d8c; opacity: 0.7;">
                 Built with ❤️ by Mohsin<br>
                 Powered by LoveModel_v2.0
             </div>
@@ -229,7 +157,11 @@
     </div>
 
     <script>
-        /* --- CONFIGURATION --- */
+        // ---------------------------------------------------------
+        // 1. CONFIGURATION: CHANGE HER NAME HERE
+        const herName = "Ayesha"; // <--- CHANGE THIS
+        // ---------------------------------------------------------
+
         const logs = [
             "Initializing LoveModel_v2.0...",
             "Importing memories...",
@@ -239,13 +171,27 @@
             "Training neural network..."
         ];
 
+        /* --- LOCAL STORAGE CHECK (PERSISTENCE) --- */
+        if(localStorage.getItem("valentineAccepted") === "true") {
+            // If she already said yes, skip the terminal and show success immediately
+            document.getElementById('terminal-phase').style.display = 'none';
+            document.getElementById('valentine-phase').style.display = 'flex';
+            document.getElementById('question-container').style.display = 'none';
+            document.getElementById('success-container').style.display = 'flex';
+            
+            // Re-trigger confetti for effect
+            setTimeout(() => { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#ff6b81', '#ff4757'] }); }, 500);
+        } else {
+            // Start Normal Flow
+            setTimeout(typeLog, 500);
+        }
+
         /* --- TERMINAL LOGIC --- */
         const logContainer = document.getElementById('logs');
         const progressBar = document.getElementById('progress-bar');
         const progressFill = document.getElementById('progress-fill');
         const terminal = document.getElementById('terminal-phase');
         const valentine = document.getElementById('valentine-phase');
-        
         let logIndex = 0;
 
         function typeLog() {
@@ -254,12 +200,9 @@
                 div.className = 'log-line';
                 div.textContent = `> ${logs[logIndex]}`;
                 logContainer.appendChild(div);
-                
-                // Fade in effect
                 setTimeout(() => { div.style.opacity = 1; }, 50);
-
                 logIndex++;
-                setTimeout(typeLog, 800); // Speed of typing
+                setTimeout(typeLog, 600);
             } else {
                 startTraining();
             }
@@ -273,7 +216,7 @@
                     clearInterval(interval);
                     showLoss();
                 } else {
-                    width += Math.random() * 5; // Random speed
+                    width += Math.random() * 10;
                     if (width > 100) width = 100;
                     progressFill.style.width = width + '%';
                 }
@@ -290,16 +233,15 @@
 
             let loss = 1.0;
             const lossInterval = setInterval(() => {
-                loss = loss * 0.6; // Decrease loss
+                loss = loss * 0.6;
                 div.textContent = `Current Loss: ${loss.toFixed(6)}`;
-                
                 if (loss < 0.001) {
                     clearInterval(lossInterval);
                     div.textContent = "Model Converged Successfully ✅";
                     div.style.color = "#00ff41";
                     setTimeout(transitionToValentine, 1500);
                 }
-            }, 200);
+            }, 150);
         }
 
         function transitionToValentine() {
@@ -307,37 +249,50 @@
             setTimeout(() => {
                 terminal.style.display = 'none';
                 valentine.style.display = 'flex';
+                // Typewriter Effect for Name
+                document.querySelector(".main-question").innerHTML = `Will you be my Valentine, <span style="color:#ff4757">${herName}</span>?`;
             }, 600);
         }
+
+        /* --- CURSOR HEART TRAIL --- */
+        document.addEventListener("mousemove", function(e) {
+            const heart = document.createElement("div");
+            heart.className = "heart-trail";
+            heart.innerHTML = "❤️";
+            heart.style.left = e.clientX + "px";
+            heart.style.top = e.clientY + "px";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.transform = "translateY(-20px) scale(0.5)";
+                heart.style.opacity = "0";
+            }, 50);
+
+            setTimeout(() => { heart.remove(); }, 800);
+        });
 
         /* --- BUTTON LOGIC --- */
         const noBtn = document.getElementById('no-btn');
         const yesBtn = document.getElementById('yes-btn');
         let escapeCount = 0;
-        const noTexts = ["Are you sure?", "Think again.", "Nice try.", "Don't do this.", "Error 404", "Illegal move"];
+        const noTexts = ["Are you sure?", "Think again.", "Nice try.", "Error 404", "Illegal move", "System Halted"];
 
         function dodgeCursor() {
-            // Move No Button
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
-            
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
-
-            // Change Text
-            const randomText = noTexts[Math.floor(Math.random() * noTexts.length)];
-            noBtn.innerText = randomText;
-
+            
+            noBtn.innerText = noTexts[Math.floor(Math.random() * noTexts.length)];
+            
             // Grow Yes Button
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize * 1.2) + 'px';
+            yesBtn.style.fontSize = (currentSize * 1.1) + 'px';
             yesBtn.style.padding = (parseFloat(window.getComputedStyle(yesBtn).paddingTop) * 1.1) + 'px ' + (parseFloat(window.getComputedStyle(yesBtn).paddingRight) * 1.1) + 'px';
 
             escapeCount++;
-            if(escapeCount === 5) {
-                noBtn.innerText = "Okay fine 😭";
-            }
+            if(escapeCount === 5) { noBtn.innerText = "Okay fine 😭"; }
         }
 
         function fakeError() {
@@ -345,43 +300,32 @@
         }
 
         function acceptLove() {
+            // 1. Save to LocalStorage (PERMANENT)
+            localStorage.setItem("valentineAccepted", "true");
+
+            // 2. UI Transition
             document.getElementById('question-container').style.display = 'none';
             document.getElementById('success-container').style.display = 'flex';
             
-            // Try to play music (browsers require interaction first, so this click works)
+            // 3. Audio
             const music = document.getElementById('bg-music');
             if(music) music.play().catch(e => console.log("Audio play failed"));
 
-            // Confetti Explosion
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff6b81', '#ff4757', '#ffffff']
-            });
-
-            // Continuous Confetti
+            // 4. Confetti
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#ff6b81', '#ff4757', '#ffffff'] });
             setInterval(() => {
-                confetti({
-                    particleCount: 50,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ['#ff6b81', '#ff4757']
-                });
-                confetti({
-                    particleCount: 50,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ['#ff6b81', '#ff4757']
-                });
+                confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff6b81', '#ff4757'] });
+                confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff6b81', '#ff4757'] });
             }, 2000);
+
+            // 5. Memory Mode Text
+            setTimeout(() => {
+                const msg = document.createElement("div");
+                msg.className = "memory-text";
+                msg.innerHTML = "> This moment has been saved in LoveModel_v2.0 memory core.";
+                document.getElementById("success-container").insertBefore(msg, document.querySelector('.screenshot-btn'));
+            }, 3000);
         }
-
-        // Start the process
-        setTimeout(typeLog, 1000);
-
     </script>
 </body>
 </html>
