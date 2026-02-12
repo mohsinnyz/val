@@ -157,6 +157,11 @@
     </div>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'test') {
+            localStorage.clear();
+            console.log("⚠️ DEV MODE: Memory cleared for testing.");
+        }
         // ---------------------------------------------------------
         // 1. CONFIGURATION: CHANGE HER NAME HERE
         const herName = "Zarooooooo"; // <--- CHANGE THIS
