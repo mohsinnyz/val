@@ -13,7 +13,7 @@
             --love-pink: #ff6b81;
             --love-bg: #ffe6ea;
             --btn-yes: #2ed573;
-            --btn-no: #ff4757;
+            --btn-no: #a29bfe; /* Cute Purple */
         }
 
         body, html {
@@ -26,101 +26,73 @@
             background-color: var(--bg-dark);
         }
 
-        /* --- PHASE 1: TERMINAL --- */
+        /* --- TERMINAL --- */
         #terminal-phase {
             background-color: var(--bg-dark);
             color: var(--term-green);
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 2rem;
-            box-sizing: border-box;
-            font-family: 'Courier Prime', monospace;
-            z-index: 10;
-            position: absolute;
-            top: 0;
-            left: 0;
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+            padding: 2rem; box-sizing: border-box; font-family: 'Courier Prime', monospace;
+            z-index: 10; position: absolute; top: 0; left: 0;
         }
-
         .log-line { margin-bottom: 5px; font-size: 1.1rem; opacity: 0; transition: opacity 0.3s; }
         .progress-bar { width: 300px; height: 10px; border: 1px solid var(--term-green); margin-top: 15px; display: none; }
         .progress-fill { height: 100%; background-color: var(--term-green); width: 0%; }
-        
         .glitch-effect { animation: glitch 0.3s infinite; }
 
-        /* --- PHASE 2: VALENTINE UI --- */
+        /* --- VALENTINE PHASE --- */
         #valentine-phase {
             background: linear-gradient(135deg, #ffe6ea 0%, #ffc3cf 100%);
-            width: 100%;
-            height: 100%;
-            display: none; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            width: 100%; height: 100%;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; position: absolute; top: 0; left: 0; z-index: 5;
+        }
+
+        /* PNG DECORATIONS */
+        .decor-png {
             position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 5;
+            width: 120px; /* Adjust size as needed */
+            z-index: 6;
+            pointer-events: none;
         }
+        .decor-1 { top: 10%; left: 10%; transform: rotate(-15deg); }
+        .decor-2 { bottom: 15%; right: 10%; transform: rotate(15deg); }
+        .decor-3 { top: 15%; right: 15%; }
 
-        .main-question { font-size: 3rem; color: #2f3542; font-weight: 800; margin-bottom: 30px; padding: 0 20px; }
-        .btn-container { display: flex; gap: 20px; position: relative; z-index: 20; }
+        .main-question { font-size: 3rem; color: #2f3542; font-weight: 800; margin-bottom: 40px; z-index: 7; }
         
-        button { padding: 15px 40px; font-size: 1.2rem; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        /* CENTERED BUTTONS */
+        .btn-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 20px; 
+            z-index: 20; 
+            width: 100%;
+        }
+        
+        button { padding: 15px 45px; font-size: 1.2rem; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         #yes-btn { background-color: var(--btn-yes); color: white; }
-        #no-btn { background-color: var(--btn-no); color: white; position: relative; }
+        #no-btn { background-color: var(--btn-no); color: white; }
 
-        /* --- PHASE 3: SUCCESS --- */
+        /* --- SUCCESS --- */
         #success-container { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; overflow-y: auto; padding: 40px 0; }
-        
-        .couple-photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            border: 8px solid white;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(255, 107, 129, 0.3);
-            margin-bottom: 20px;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
+        .couple-photo { width: 220px; height: 220px; border-radius: 50%; border: 8px solid white; object-fit: cover; box-shadow: 0 10px 30px rgba(255, 107, 129, 0.3); margin-bottom: 20px; animation: pulse 2s infinite ease-in-out; }
         .success-title { font-size: 3.5rem; color: #ff4757; text-align: center; }
         .glow-text { text-shadow: 0 0 10px #ff6b81, 0 0 20px #ff4757; }
         .sub-text { font-size: 1.5rem; color: #2f3542; margin-top: 10px; font-weight: 600; }
 
         .funky-letter {
-            font-family: 'Caveat', cursive;
-            font-size: 1.5rem;
-            color: #4a4a4a;
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 30px;
-            border-radius: 25px;
-            margin: 25px;
-            line-height: 1.5;
-            text-align: left;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            font-family: 'Caveat', cursive; font-size: 1.5rem; color: #4a4a4a; max-width: 500px;
+            background: rgba(255, 255, 255, 0.6); padding: 30px; border-radius: 25px; margin: 25px;
+            line-height: 1.5; text-align: left; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .heart-trail { position: fixed; pointer-events: none; font-size: 20px; z-index: 1000; }
-        .download-btn { margin-top: 20px; background-color: #2f3542; color: white; padding: 12px 25px; border-radius: 10px; display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1rem; }
+        .download-btn { margin-top: 20px; background-color: #2f3542; color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-size: 1rem; cursor: pointer; border:none;}
 
-        /* Animations */
-        @keyframes glitch {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            100% { transform: translate(0) }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+        @keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 100% { transform: translate(0) } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         @media print {
             body * { visibility: hidden; }
@@ -144,6 +116,10 @@
     </div>
 
     <div id="valentine-phase">
+        <img src="cute-sticker1.png" class="decor-png decor-1" alt="">
+        <img src="cute-sticker2.png" class="decor-png decor-2" alt="">
+        <img src="cute-sticker3.png" class="decor-png decor-3" alt="">
+
         <div id="question-container">
             <div class="main-question">Will you be my Valentine?</div>
             <div class="btn-container">
@@ -154,49 +130,33 @@
 
         <div id="success-container">
             <img src="photo.jpg" alt="Us" class="couple-photo">
-            
             <div class="success-title glow-text">Valentine Confirmed! ❤️</div>
             <div class="sub-text">HEHE, ILOVEYOUUUU BABY</div>
-            
             <div class="funky-letter">
-                ✨ Every second with you feels like a dream...<br>
-                🌙 You're the moon to my night sky...<br>
-                ⚡ You charge my heart 100%...<br><br>
-                
-                [ PASTE YOUR FULL LOVE LETTER HERE ]
+                ✨ Your funky lines here...<br><br>
+                [ PASTE FULL LETTER HERE ]
             </div>
-
             <div id="memory-tag" style="font-size: 0.9rem; color: #747d8c; font-family: 'Courier Prime'; margin-bottom: 20px;"></div>
-
-            <button class="download-btn" onclick="saveAsPDF()">
-                📸 Save LOVELETTER.PDF
-            </button>
+            <button class="download-btn" onclick="saveAsPDF()">📸 Save LOVELETTER.PDF</button>
         </div>
     </div>
 
     <script>
-        // TEST MODE LOGIC
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('mode') === 'test') {
-            localStorage.clear();
-            console.log("🛠️ TEST MODE: Storage cleared.");
-        }
+        if (urlParams.get('mode') === 'test') { localStorage.clear(); }
 
         const herName = "Zarooooooo"; 
         const logs = [
             "Initializing Heartbeat.exe...",
             "Importing core memories...",
-            "Loading favorite songs...",
-            "Syncing neural affection...",
+            "Loading our cutest selfies...",
+            "Fetching baarish and chai meetup moments...",
+            "Getting islamabad walk memories ...",
+            "Syncing our soulful talks...",
             "Optimizing for forever..."
         ];
-
-        /* --- INITIALIZATION --- */
-        if(localStorage.getItem("valentineAccepted") === "true") {
-            skipToSuccess();
-        } else {
-            setTimeout(typeLog, 500);
-        }
+        if(localStorage.getItem("valentineAccepted") === "true") { skipToSuccess(); } 
+        else { setTimeout(typeLog, 500); }
 
         const logContainer = document.getElementById('logs');
         const progressBar = document.getElementById('progress-bar');
@@ -212,23 +172,15 @@
                 setTimeout(() => { div.style.opacity = 1; }, 50);
                 logIndex++;
                 setTimeout(typeLog, 700);
-            } else {
-                startTraining();
-            }
+            } else { startTraining(); }
         }
 
         function startTraining() {
             progressBar.style.display = 'block';
             let width = 0;
             const interval = setInterval(() => {
-                if (width >= 100) {
-                    clearInterval(interval);
-                    setTimeout(transitionToValentine, 1000);
-                } else {
-                    width += Math.random() * 15;
-                    if (width > 100) width = 100;
-                    progressFill.style.width = width + '%';
-                }
+                if (width >= 100) { clearInterval(interval); setTimeout(transitionToValentine, 1000); }
+                else { width += Math.random() * 15; progressFill.style.width = width + '%'; }
             }, 150);
         }
 
@@ -250,12 +202,10 @@
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize + 3) + 'px';
+            yesBtn.style.fontSize = (currentSize + 2) + 'px';
         }
 
-        function fakeError() {
-            alert("Error: Rejection module not found. Please click YES.");
-        }
+        function fakeError() { alert("Error: Rejection module not found."); }
 
         function acceptLove() {
             localStorage.setItem("valentineAccepted", "true");
@@ -264,9 +214,11 @@
 
         function showSuccessUI() {
             document.getElementById('question-container').style.display = 'none';
+            // Hide decorations on success
+            document.querySelectorAll('.decor-png').forEach(el => el.style.display = 'none');
             document.getElementById('success-container').style.display = 'flex';
             const music = document.getElementById('bg-music');
-            if(music) music.play().catch(e => console.log("Music play blocked"));
+            if(music) music.play().catch(e => {});
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
             document.getElementById('memory-tag').textContent = "> This moment has been saved in our memory core.";
         }
@@ -277,12 +229,8 @@
             showSuccessUI();
         }
 
-        function saveAsPDF() {
-            document.title = "LOVELETTER"; 
-            window.print();
-        }
+        function saveAsPDF() { document.title = "LOVELETTER"; window.print(); }
 
-        // Heart Trail Effect
         document.addEventListener("mousemove", function(e) {
             const heart = document.createElement("div");
             heart.className = "heart-trail";
