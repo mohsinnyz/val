@@ -13,29 +13,24 @@
             --love-pink: #ff6b81;
             --love-bg: #ffe6ea;
             --btn-yes: #2ed573;
-            --btn-no: #a29bfe; /* Cute Purple */
+            --btn-no: #a29bfe; /* Purple as requested */
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; font-family: 'Poppins', sans-serif;
             background-color: var(--bg-dark);
         }
 
         /* --- TERMINAL --- */
         #terminal-phase {
-            background-color: var(--bg-dark);
-            color: var(--term-green);
-            width: 100%; height: 100%;
-            display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-            padding: 2rem; box-sizing: border-box; font-family: 'Courier Prime', monospace;
+            background-color: var(--bg-dark); color: var(--term-green);
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start; padding: 2rem;
+            box-sizing: border-box; font-family: 'Courier Prime', monospace;
             z-index: 10; position: absolute; top: 0; left: 0;
         }
-        .log-line { margin-bottom: 5px; font-size: 1.1rem; opacity: 0; transition: opacity 0.3s; }
+        .log-line { margin-bottom: 5px; font-size: 1.1rem; opacity: 0; }
         .progress-bar { width: 300px; height: 10px; border: 1px solid var(--term-green); margin-top: 15px; display: none; }
         .progress-fill { height: 100%; background-color: var(--term-green); width: 0%; }
         .glitch-effect { animation: glitch 0.3s infinite; }
@@ -43,18 +38,13 @@
         /* --- VALENTINE PHASE --- */
         #valentine-phase {
             background: linear-gradient(135deg, #ffe6ea 0%, #ffc3cf 100%);
-            width: 100%; height: 100%;
-            display: none; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; position: absolute; top: 0; left: 0; z-index: 5;
+            width: 100%; height: 100%; display: none; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            position: absolute; top: 0; left: 0; z-index: 5;
         }
 
-        /* PNG DECORATIONS */
-        .decor-png {
-            position: absolute;
-            width: 120px; /* Adjust size as needed */
-            z-index: 6;
-            pointer-events: none;
-        }
+        /* STICKERS */
+        .decor-png { position: absolute; width: 120px; z-index: 6; pointer-events: none; }
         .decor-1 { top: 10%; left: 10%; transform: rotate(-15deg); }
         .decor-2 { bottom: 15%; right: 10%; transform: rotate(15deg); }
         .decor-3 { top: 15%; right: 15%; }
@@ -63,21 +53,29 @@
         
         /* CENTERED BUTTONS */
         .btn-container { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 20px; 
-            z-index: 20; 
-            width: 100%;
+            display: flex; justify-content: center; align-items: center; 
+            gap: 20px; z-index: 20; width: 100%;
         }
         
-        button { padding: 15px 45px; font-size: 1.2rem; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        button { 
+            padding: 15px 45px; font-size: 1.2rem; border: none; border-radius: 50px; 
+            cursor: pointer; transition: all 0.2s ease; font-family: 'Poppins', sans-serif; 
+            font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
         #yes-btn { background-color: var(--btn-yes); color: white; }
-        #no-btn { background-color: var(--btn-no); color: white; }
+        #no-btn { background-color: var(--btn-no); color: white; position: relative; }
 
         /* --- SUCCESS --- */
-        #success-container { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; overflow-y: auto; padding: 40px 0; }
-        .couple-photo { width: 220px; height: 220px; border-radius: 50%; border: 8px solid white; object-fit: cover; box-shadow: 0 10px 30px rgba(255, 107, 129, 0.3); margin-bottom: 20px; animation: pulse 2s infinite ease-in-out; }
+        #success-container { 
+            display: none; flex-direction: column; align-items: center; 
+            justify-content: center; width: 100%; height: 100%; 
+            overflow-y: auto; padding: 40px 0; 
+        }
+        .couple-photo { 
+            width: 220px; height: 220px; border-radius: 50%; border: 8px solid white; 
+            object-fit: cover; box-shadow: 0 10px 30px rgba(255, 107, 129, 0.3); 
+            margin-bottom: 20px; animation: pulse 2s infinite ease-in-out; 
+        }
         .success-title { font-size: 3.5rem; color: #ff4757; text-align: center; }
         .glow-text { text-shadow: 0 0 10px #ff6b81, 0 0 20px #ff4757; }
         .sub-text { font-size: 1.5rem; color: #2f3542; margin-top: 10px; font-weight: 600; }
@@ -89,7 +87,11 @@
         }
 
         .heart-trail { position: fixed; pointer-events: none; font-size: 20px; z-index: 1000; }
-        .download-btn { margin-top: 20px; background-color: #2f3542; color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-size: 1rem; cursor: pointer; border:none;}
+        .download-btn { 
+            margin-top: 20px; background-color: #2f3542; color: white; 
+            padding: 12px 25px; border-radius: 10px; text-decoration: none; 
+            font-size: 1rem; cursor: pointer; border:none;
+        }
 
         @keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 100% { transform: translate(0) } }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
@@ -155,6 +157,8 @@
             "Syncing our soulful talks...",
             "Optimizing for forever..."
         ];
+                const noTexts = ["Are you sure?", "Think again.", "Nice try.", "Error 404", "Illegal move", "System Halted", "Wait, what?", "Don't do this 😭"];
+
         if(localStorage.getItem("valentineAccepted") === "true") { skipToSuccess(); } 
         else { setTimeout(typeLog, 500); }
 
@@ -196,16 +200,25 @@
         function dodgeCursor() {
             const noBtn = document.getElementById('no-btn');
             const yesBtn = document.getElementById('yes-btn');
+            
+            // Random position
             const x = Math.random() * (window.innerWidth - 150);
             const y = Math.random() * (window.innerHeight - 100);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
+            
+            // RESTORED: Change text
+            noBtn.innerText = noTexts[Math.floor(Math.random() * noTexts.length)];
+            
+            // RESTORED: Fast Growth
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize + 2) + 'px';
+            const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
+            yesBtn.style.fontSize = (currentSize * 1.15) + 'px';
+            yesBtn.style.padding = (currentPadding * 1.1) + 'px ' + (parseFloat(window.getComputedStyle(yesBtn).paddingRight) * 1.1) + 'px';
         }
 
-        function fakeError() { alert("Error: Rejection module not found."); }
+        function fakeError() { alert("Error: Rejection module not found in this version."); }
 
         function acceptLove() {
             localStorage.setItem("valentineAccepted", "true");
@@ -214,7 +227,6 @@
 
         function showSuccessUI() {
             document.getElementById('question-container').style.display = 'none';
-            // Hide decorations on success
             document.querySelectorAll('.decor-png').forEach(el => el.style.display = 'none');
             document.getElementById('success-container').style.display = 'flex';
             const music = document.getElementById('bg-music');
