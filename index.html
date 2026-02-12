@@ -26,7 +26,7 @@
             background-color: var(--bg-dark);
         }
 
-        /* --- PHASE 1: AI TERMINAL --- */
+        /* --- PHASE 1: TERMINAL --- */
         #terminal-phase {
             background-color: var(--bg-dark);
             color: var(--term-green);
@@ -45,18 +45,11 @@
             left: 0;
         }
 
-        .log-line { margin-bottom: 5px; font-size: 1.1rem; opacity: 0; }
+        .log-line { margin-bottom: 5px; font-size: 1.1rem; opacity: 0; transition: opacity 0.3s; }
         .progress-bar { width: 300px; height: 10px; border: 1px solid var(--term-green); margin-top: 15px; display: none; }
         .progress-fill { height: 100%; background-color: var(--term-green); width: 0%; }
         
         .glitch-effect { animation: glitch 0.3s infinite; }
-        @keyframes glitch {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            60% { transform: translate(2px, 2px) }
-            100% { transform: translate(0) }
-        }
 
         /* --- PHASE 2: VALENTINE UI --- */
         #valentine-phase {
@@ -82,49 +75,57 @@
         #no-btn { background-color: var(--btn-no); color: white; position: relative; }
 
         /* --- PHASE 3: SUCCESS --- */
-        #success-container { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; overflow-y: auto; padding: 20px 0; }
+        #success-container { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; overflow-y: auto; padding: 40px 0; }
         
-        /* THE PHOTO */
         .couple-photo {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
-            border: 5px solid white;
+            border: 8px solid white;
             object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 129, 0.3);
             margin-bottom: 20px;
-            animation: popIn 0.8s ease;
+            animation: pulse 2s infinite ease-in-out;
         }
 
-        .success-title { font-size: 3.5rem; color: #ff4757; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; }
+        .success-title { font-size: 3.5rem; color: #ff4757; text-align: center; }
         .glow-text { text-shadow: 0 0 10px #ff6b81, 0 0 20px #ff4757; }
         .sub-text { font-size: 1.5rem; color: #2f3542; margin-top: 10px; font-weight: 600; }
 
-        /* THE LETTER STYLING */
         .funky-letter {
             font-family: 'Caveat', cursive;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #4a4a4a;
             max-width: 500px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.6);
             padding: 30px;
-            border-radius: 20px;
-            margin: 20px;
-            line-height: 1.4;
+            border-radius: 25px;
+            margin: 25px;
+            line-height: 1.5;
             text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
         .heart-trail { position: fixed; pointer-events: none; font-size: 20px; z-index: 1000; }
+        .download-btn { margin-top: 20px; background-color: #2f3542; color: white; padding: 12px 25px; border-radius: 10px; display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1rem; }
 
-        .download-btn { margin-top: 20px; background-color: #2f3542; color: white; padding: 12px 25px; border-radius: 10px; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        /* Animations */
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            100% { transform: translate(0) }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-
-        /* PRINT STYLES FOR PDF */
         @media print {
             body * { visibility: hidden; }
             #success-container, #success-container * { visibility: visible; }
-            #success-container { position: absolute; left: 0; top: 0; width: 100%; background: white !important; }
+            #success-container { position: absolute; left: 0; top: 0; width: 100%; }
             .download-btn { display: none; }
         }
     </style>
@@ -158,11 +159,11 @@
             <div class="sub-text">HEHE, ILOVEYOUUUU BABY</div>
             
             <div class="funky-letter">
-                ✨ You make my heart skip a beat...<br>
-                🌈 Life is brighter with you...<br>
-                🍕 You're the cheese to my pizza...<br><br>
+                ✨ Every second with you feels like a dream...<br>
+                🌙 You're the moon to my night sky...<br>
+                ⚡ You charge my heart 100%...<br><br>
                 
-                [ YOUR MAIN LOVE LETTER GOES HERE ]
+                [ PASTE YOUR FULL LOVE LETTER HERE ]
             </div>
 
             <div id="memory-tag" style="font-size: 0.9rem; color: #747d8c; font-family: 'Courier Prime'; margin-bottom: 20px;"></div>
@@ -170,16 +171,18 @@
             <button class="download-btn" onclick="saveAsPDF()">
                 📸 Save LOVELETTER.PDF
             </button>
-
-            <div style="margin-top: 30px; font-size: 0.8rem; color: #747d8c;">
-                Built with ❤️ by Mohsin
-            </div>
         </div>
     </div>
 
     <script>
-        const herName = "Zarooooooo"; 
+        // TEST MODE LOGIC
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'test') {
+            localStorage.clear();
+            console.log("🛠️ TEST MODE: Storage cleared.");
+        }
 
+        const herName = "Zarooooooo"; 
         const logs = [
             "Initializing Heartbeat.exe...",
             "Importing core memories...",
@@ -188,7 +191,7 @@
             "Optimizing for forever..."
         ];
 
-        /* --- LOGIC START --- */
+        /* --- INITIALIZATION --- */
         if(localStorage.getItem("valentineAccepted") === "true") {
             skipToSuccess();
         } else {
@@ -246,10 +249,8 @@
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
-            
-            // Grow Yes Button
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize + 5) + 'px';
+            yesBtn.style.fontSize = (currentSize + 3) + 'px';
         }
 
         function fakeError() {
@@ -264,12 +265,9 @@
         function showSuccessUI() {
             document.getElementById('question-container').style.display = 'none';
             document.getElementById('success-container').style.display = 'flex';
-            
             const music = document.getElementById('bg-music');
-            if(music) music.play().catch(e => console.log("Audio requires interaction"));
-
+            if(music) music.play().catch(e => console.log("Music play blocked"));
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-            
             document.getElementById('memory-tag').textContent = "> This moment has been saved in our memory core.";
         }
 
@@ -280,11 +278,11 @@
         }
 
         function saveAsPDF() {
-            document.title = "LOVELETTER"; // Changes the filename for the printer
+            document.title = "LOVELETTER"; 
             window.print();
         }
 
-        // Heart Trail
+        // Heart Trail Effect
         document.addEventListener("mousemove", function(e) {
             const heart = document.createElement("div");
             heart.className = "heart-trail";
