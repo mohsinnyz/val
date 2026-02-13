@@ -13,7 +13,7 @@
             --love-pink: #ff6b81;
             --love-bg: #ffe6ea;
             --btn-yes: #2ed573;
-            --btn-no: #a29bfe; /* Purple as requested */
+            --btn-no: #a29bfe; 
         }
 
         body, html {
@@ -33,7 +33,8 @@
         .log-line { margin-bottom: 5px; font-size: 1.1rem; opacity: 0; }
         .progress-bar { width: 300px; height: 10px; border: 1px solid var(--term-green); margin-top: 15px; display: none; }
         .progress-fill { height: 100%; background-color: var(--term-green); width: 0%; }
-        .glitch-effect { animation: glitch 0.3s infinite; }
+        
+        .glitch-effect { animation: glitch 0.15s infinite; }
 
         /* --- VALENTINE PHASE --- */
         #valentine-phase {
@@ -43,23 +44,16 @@
             position: absolute; top: 0; left: 0; z-index: 5;
         }
 
-        /* STICKERS */
         .decor-png { position: absolute; width: 120px; z-index: 6; pointer-events: none; }
         .decor-1 { top: 10%; left: 10%; transform: rotate(-15deg); }
         .decor-2 { bottom: 15%; right: 10%; transform: rotate(15deg); }
         .decor-3 { top: 15%; right: 15%; }
-        /* New Stickers 4-10 */
-        .decor-4 { bottom: 20%; left: 15%; transform: rotate(-10deg); }
         .decor-5 { top: 45%; left: 5%; transform: rotate(20deg); }
         .decor-6 { top: 50%; right: 5%; transform: rotate(-5deg); }
-        .decor-7 { bottom: 5%; left: 40%; transform: rotate(10deg); }
         .decor-8 { top: 5%; left: 45%; transform: rotate(-15deg); }
-        .decor-9 { bottom: 35%; right: 20%; transform: rotate(5deg); }
-        .decor-10 { top: 25%; right: 35%; width: 80px; transform: rotate(25deg); }
 
         .main-question { font-size: 3rem; color: #2f3542; font-weight: 800; margin-bottom: 40px; z-index: 7; }
         
-        /* CENTERED BUTTONS */
         .btn-container { 
             display: flex; justify-content: center; align-items: center; 
             gap: 20px; z-index: 20; width: 100%;
@@ -77,38 +71,81 @@
         #success-container { 
             display: none; flex-direction: column; align-items: center; 
             justify-content: center; width: 100%; height: 100%; 
-            overflow-y: auto; padding: 40px 0; 
+            /* UPDATED: Removed scroll logic */
+            overflow: hidden; 
+            padding: 20px;
+            box-sizing: border-box;
         }
         .couple-photo { 
-            width: 220px; height: 220px; border-radius: 50%; border: 8px solid white; 
+            width: 200px; height: 200px; border-radius: 50%; border: 8px solid white; 
             object-fit: cover; box-shadow: 0 10px 30px rgba(255, 107, 129, 0.3); 
-            margin-bottom: 20px; animation: pulse 2s infinite ease-in-out; 
+            margin-bottom: 15px; animation: pulse 2s infinite ease-in-out; 
+            flex-shrink: 0;
         }
-        .success-title { font-size: 3.5rem; color: #ff4757; text-align: center; }
+        .success-title { font-size: 3rem; color: #ff4757; text-align: center; margin-bottom: 0; }
         .glow-text { text-shadow: 0 0 10px #ff6b81, 0 0 20px #ff4757; }
-        .sub-text { font-size: 1.5rem; color: #2f3542; margin-top: 10px; font-weight: 600; }
+        
+        .sub-text { 
+            font-family: 'Caveat', cursive; 
+            font-size: 1.6rem; 
+            color: #4a4a4a; 
+            margin-top: 5px; 
+            font-weight: 700; 
+        }
 
         .funky-letter {
-            font-family: 'Caveat', cursive; font-size: 1.5rem; color: #4a4a4a; max-width: 500px;
-            background: rgba(255, 255, 255, 0.6); padding: 30px; border-radius: 25px; margin: 25px;
-            line-height: 1.5; text-align: left; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            font-family: 'Caveat', cursive; font-size: 1.4rem; color: #4a4a4a; 
+            max-width: 700px; 
+            width: 85%; 
+            background: rgba(255, 255, 255, 0.6); padding: 25px; border-radius: 25px; margin: 15px;
+            line-height: 1.4; text-align: left; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            /* Handle internal text overflow just in case, but hide main page scroll */
+            max-height: 40vh;
+            overflow-y: auto;
         }
 
         .heart-trail { position: fixed; pointer-events: none; font-size: 20px; z-index: 1000; }
         .download-btn { 
-            margin-top: 20px; background-color: #2f3542; color: white; 
-            padding: 12px 25px; border-radius: 10px; text-decoration: none; 
+            margin-top: 5px; background-color: #2f3542; color: white; 
+            padding: 10px 25px; border-radius: 10px; text-decoration: none; 
             font-size: 1rem; cursor: pointer; border:none;
         }
 
-        @keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 100% { transform: translate(0) } }
+        /* --- PRINT CORNERS (Hidden by default) --- */
+        .print-info { display: none; }
+
+        @keyframes glitch { 
+            0% { transform: translate(0) } 
+            20% { transform: translate(-10px, 10px) skewX(5deg); } 
+            40% { transform: translate(10px, -10px) skewX(-5deg); } 
+            60% { transform: translate(-5px, 0px); } 
+            80% { transform: translate(0px, 5px); } 
+            100% { transform: translate(0) } 
+        }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         @media print {
             body * { visibility: hidden; }
             #success-container, #success-container * { visibility: visible; }
-            #success-container { position: absolute; left: 0; top: 0; width: 100%; }
+            #success-container { 
+                position: absolute; left: 0; top: 0; width: 100%; height: auto; 
+                display: flex !important; overflow: visible; padding-bottom: 0;
+            }
             .download-btn { display: none; }
+            .couple-photo { animation: none; box-shadow: none; border-color: #ccc; }
+            .funky-letter { box-shadow: none; border: 1px solid #eee; overflow: visible; max-height: none; }
+
+            .print-info {
+                visibility: visible;
+                position: fixed;
+                font-family: 'Courier Prime', monospace;
+                font-size: 10pt;
+                color: #555;
+            }
+            #p-date { top: 10px; left: 20px; }
+            #p-link { top: 10px; right: 20px; }
+            #p-title { bottom: 10px; left: 20px; }
+            #p-page { bottom: 10px; right: 20px; }
         }
     </style>
 </head>
@@ -117,6 +154,11 @@
     <audio id="bg-music" loop>
         <source src="YOUR_SONG_FILE.mp3" type="audio/mpeg">
     </audio>
+
+    <div class="print-info" id="p-date"></div>
+    <div class="print-info" id="p-link"></div>
+    <div class="print-info" id="p-title">Love Letter.pdf</div>
+    <div class="print-info" id="p-page">Page 1/1</div>
 
     <div id="terminal-phase">
         <div id="logs"></div>
@@ -131,8 +173,7 @@
         <img src="cute-sticker3.png" class="decor-png decor-3" alt="">
         <img src="cute-sticker5.png" class="decor-png decor-5" alt="">
         <img src="cute-sticker7.png" class="decor-png decor-6" alt="">
-        <img src="cute-sticker1 .png" class="decor-png decor-8" alt="">
-
+        <img src="cute-sticker1.png" class="decor-png decor-8" alt="">
 
         <div id="question-container">
             <div class="main-question">Will you be my Valentine?</div>
@@ -150,22 +191,19 @@
                 My Love,
                 i always wanted to make you feel the happiest you have ever been. I love you the way no one ever
                 did to anyone, to be there for you when you are not okay, i want to hug you tight when your eyes
-                even imagine a tear. you are warmth in my coldest days and light that guides me through the darkest nights. 
+                even imagine a tear. giving you reason to cherish life and smile taking all your sorrows.
+                you are warmth in my coldest days and light that guides me through the darkest nights. 
                 only with you i imagine my life and i cant wait to create countless more memories together with our
-                cutest babies and new lightful cozy life. may you always smile.
-                <br><br>
-                
+                cutest babies and new lightful cozy life and place we call home. 
+                may you always smile, always find a safe place in me and feel whole when you are with me. 
+                may we keep coming back to each other no matter what happens AAAAAAAAMEEENN!!!!!!
             </div>
-            <div id="memory-tag" style="font-size: 0.9rem; color: #747d8c; font-family: 'Courier Prime'; margin-bottom: 20px;"></div>
-            <button class="download-btn" onclick="saveAsPDF()">📸 Save LOVELETTER.PDF</button>
+            <button class="download-btn" onclick="saveAsPDF()">📸 save this moment in our memory core.</button>
         </div>
     </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('mode') === 'test') { localStorage.clear(); }
-
-        const herName = "Zarooooooo"; 
+        const herName = "Zaroooooooooooo"; 
         const logs = [
             "Initializing Heartbeat.exe...",
             "Importing core memories...",
@@ -175,17 +213,13 @@
             "Syncing our soulful talks...",
             "Optimizing for forever..."
         ];
-                const noTexts = ["Are you sure?", "Think again.", "Nice try.", "Error 404", "Illegal move", "System Halted", "Wait, what?", "Don't do this 😭"];
+        const noTexts = ["Are you sure?", "Think again.", "Nice try." , "Error 404", "Illegal move", "System Halted", "Wait, what?", "Don't do this 😭"];
 
-        if(localStorage.getItem("valentineAccepted") === "true") { skipToSuccess(); } 
-        else { setTimeout(typeLog, 500); }
-
-        const logContainer = document.getElementById('logs');
-        const progressBar = document.getElementById('progress-bar');
-        const progressFill = document.getElementById('progress-fill');
-        let logIndex = 0;
+        // Start animation immediately (removed localStorage check)
+        setTimeout(typeLog, 500);
 
         function typeLog() {
+            const logContainer = document.getElementById('logs');
             if (logIndex < logs.length) {
                 const div = document.createElement('div');
                 div.className = 'log-line';
@@ -197,11 +231,14 @@
             } else { startTraining(); }
         }
 
+        let logIndex = 0;
         function startTraining() {
+            const progressBar = document.getElementById('progress-bar');
+            const progressFill = document.getElementById('progress-fill');
             progressBar.style.display = 'block';
             let width = 0;
             const interval = setInterval(() => {
-                if (width >= 100) { clearInterval(interval); setTimeout(transitionToValentine, 1000); }
+                if (width >= 100) { clearInterval(interval); setTimeout(transitionToValentine, 100); }
                 else { width += Math.random() * 15; progressFill.style.width = width + '%'; }
             }, 150);
         }
@@ -218,29 +255,38 @@
         function dodgeCursor() {
             const noBtn = document.getElementById('no-btn');
             const yesBtn = document.getElementById('yes-btn');
-            
-            // Random position
             const x = Math.random() * (window.innerWidth - 150);
             const y = Math.random() * (window.innerHeight - 100);
             noBtn.style.position = 'fixed';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
-            
-            // RESTORED: Change text
             noBtn.innerText = noTexts[Math.floor(Math.random() * noTexts.length)];
-            
-            // RESTORED: Fast Growth
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
             yesBtn.style.fontSize = (currentSize * 1.15) + 'px';
-            yesBtn.style.padding = (currentPadding * 1.1) + 'px ' + (parseFloat(window.getComputedStyle(yesBtn).paddingRight) * 1.1) + 'px';
         }
 
         function fakeError() { alert("Error: Rejection module not found in this version."); }
 
         function acceptLove() {
-            localStorage.setItem("valentineAccepted", "true");
+            // Removed localStorage save to ensure it plays every time
             showSuccessUI();
+        }
+
+        function continuousHearts() {
+            const defaults = { spread: 360, ticks: 100, gravity: 0.5, decay: 0.94, startVelocity: 30, shapes: ['heart'], colors: ['#ff4757', '#ff6b81', '#ffafbd'] };
+
+            function shoot() {
+                confetti({ ...defaults, particleCount: 150, origin: { x: Math.random(), y: Math.random() - 0.2 } });
+            }
+
+            (function loop() {
+                shoot();
+                setTimeout(() => {
+                    if (document.getElementById('success-container').style.display === 'flex') {
+                        requestAnimationFrame(loop);
+                    }
+                }, 700);
+            })();
         }
 
         function showSuccessUI() {
@@ -249,17 +295,17 @@
             document.getElementById('success-container').style.display = 'flex';
             const music = document.getElementById('bg-music');
             if(music) music.play().catch(e => {});
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-            document.getElementById('memory-tag').textContent = "> This moment has been saved in our memory core.";
+            
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, shapes: ['heart'] });
+            continuousHearts();
         }
 
-        function skipToSuccess() {
-            document.getElementById('terminal-phase').style.display = 'none';
-            document.getElementById('valentine-phase').style.display = 'flex';
-            showSuccessUI();
+        function saveAsPDF() { 
+            document.title = "LOVELETTER"; 
+            document.getElementById('p-date').innerText = new Date().toLocaleDateString();
+            document.getElementById('p-link').innerText = window.location.href;
+            window.print(); 
         }
-
-        function saveAsPDF() { document.title = "LOVELETTER"; window.print(); }
 
         document.addEventListener("mousemove", function(e) {
             const heart = document.createElement("div");
